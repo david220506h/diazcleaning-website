@@ -1,7 +1,6 @@
 import "./Contacto.css";
 import { useState } from "react";
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import emailjs from "emailjs-com";
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
 
@@ -28,7 +27,6 @@ const translations = {
     saturdayHours: "9:00 - 14:00",
     sundayHours: "Cerrado"
   },
-
   en: {
     formTitle: "Send us a message",
     name: "Name",
@@ -56,21 +54,31 @@ const translations = {
 const Contacto = () => {
   const language = useStore(languageStore);
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const t = translations[language] || translations.es;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    emailjs.sendForm(
-      "service_5r4smv7",     
-      "template_gcec9vb",     
-      e.target,
-      "yxGac-y7e2FYECmn2"    
-    ).then(() => {
-      setSent(true);
-      e.target.reset();
-      setTimeout(() => setSent(false), 4000);
-    }).catch(err => console.error("Error al enviar:", err));
+    const formData = new FormData(e.target);
+
+    try {
+      const res = await fetch("https://formsubmit.co/diazcleaning.az@gmail.com", {
+        method: "POST",
+        body: formData
+      });
+
+      if (res.ok) {
+        setSent(true);
+        e.target.reset();
+        setTimeout(() => setSent(false), 4000);
+      }
+    } catch (err) {
+      console.error("Error al enviar:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -82,6 +90,10 @@ const Contacto = () => {
           <div className="contacto-form-card">
             <h2 className="contacto-titulo">{t.formTitle}</h2>
             <form className="contacto-form" onSubmit={handleSubmit}>
+              {/* Evita redirección de FormSubmit */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+
               <div className="form-row">
                 <div className="form-group">
                   <label>{t.name}</label>
@@ -100,7 +112,9 @@ const Contacto = () => {
                 <label>{t.message}</label>
                 <textarea name="message" placeholder={t.messagePlaceholder}></textarea>
               </div>
-              <button type="submit" className="contacto-btn">{t.sendBtn}</button>
+              <button type="submit" className="contacto-btn" disabled={loading}>
+                {loading ? "Enviando..." : t.sendBtn}
+              </button>
               {sent && <p className="mensaje-exito">{t.successMsg}</p>}
             </form>
           </div>
@@ -113,9 +127,8 @@ const Contacto = () => {
               <p><FaPhone className="info-icon" />(480) 479-4507</p>
               <p><FaEnvelope className="info-icon" />diazcleaning.az@gmail.com</p>
               <div className="social-links">
-                <a href="#" className="social-link" aria-label="Facebook"><FaFacebookF /></a>
-                <a href="#" className="social-link" aria-label="Instagram"><FaInstagram /></a>
-                <a href="#" className="social-link" aria-label="WhatsApp"><FaWhatsapp /></a>
+                <a href="https://wa.me/14804794507" className="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><FaWhatsapp /></a>
+                <a href="https://www.tiktok.com/@diaz.cleaning?_r=1&_t=ZS-97DaPpXYtgi" className="social-link" aria-label="Tiktok" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
               </div>
             </div>
 

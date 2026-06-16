@@ -1,174 +1,140 @@
 import { useState } from "react";
-import "./Servicios.css";
-import { FaBroom, FaBuilding, FaHome, FaWindowRestore, FaIndustry, FaRegBuilding, FaTimes } from 'react-icons/fa';
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
+import "./Servicios.css";
 
-// Helper para renderizar iconos
-const Icon = ({ icon: IconComponent }) => IconComponent ? <IconComponent /> : <FaBroom />;
-
-const serviciosEspañol = [
-  { titulo: 'Limpieza Profunda',     descripcion: 'Limpieza exhaustiva de todos los espacios, incluyendo áreas de difícil acceso.', categoria: 'Especializada', icono: FaBroom,         destacado: true },
-  { titulo: 'Limpieza de Ventanas',  descripcion: 'Limpieza profesional de ventanas interiores y exteriores.',                      categoria: 'Especializada', icono: FaWindowRestore },
-  { titulo: 'Limpieza de Oficinas',  descripcion: 'Mantenimiento y limpieza profesional para espacios corporativos.',               categoria: 'Comercial',     icono: FaBuilding      },
-  { titulo: 'Limpieza Industrial',   descripcion: 'Servicios especializados para plantas y espacios industriales.',                 categoria: 'Comercial',     icono: FaIndustry      },
-  { titulo: 'Servicios para el Hogar', descripcion: 'Limpieza profesional adaptada a las necesidades de tu hogar.',               categoria: 'Residencial',   icono: FaHome          },
-  { titulo: 'Limpieza de Edificios', descripcion: 'Mantenimiento integral para edificios residenciales y condominios.',            categoria: 'Residencial',   icono: FaRegBuilding   },
-  { titulo: 'Servicios de Limpieza', descripcion: 'Amplia gama de soluciones de limpieza para todo tipo de necesidades.',          categoria: 'General',       icono: FaBroom         },
-];
-
-const serviciosEnglish = [
-  { titulo: 'Deep Cleaning',      descripcion: 'Exhaustive cleaning of all spaces, including hard-to-reach areas.',         categoria: 'Specialized',  icono: FaBroom,         destacado: true },
-  { titulo: 'Window Cleaning',    descripcion: 'Professional cleaning of interior and exterior windows.',                   categoria: 'Specialized',  icono: FaWindowRestore },
-  { titulo: 'Office Cleaning',    descripcion: 'Professional maintenance and cleaning for corporate spaces.',               categoria: 'Commercial',   icono: FaBuilding      },
-  { titulo: 'Industrial Cleaning',descripcion: 'Specialized services for plants and industrial spaces.',                   categoria: 'Commercial',   icono: FaIndustry      },
-  { titulo: 'Standard Cleaning',  descripcion: 'Regular cleaning service to keep your space spotless.',                    categoria: 'Residential',  icono: FaHome          },
-  { titulo: 'Building Cleaning',  descripcion: 'Comprehensive maintenance for residential buildings and condos.',          categoria: 'Residential',  icono: FaRegBuilding   },
-  { titulo: 'Cleaning Services',  descripcion: 'Wide range of cleaning solutions for all types of needs.',                 categoria: 'General',      icono: FaBroom         },
-];
-
-const categoryIcons = {
-  'Especializada': FaBroom,
-  'Specialized':   FaBroom,
-  'Comercial':     FaBuilding,
-  'Commercial':    FaBuilding,
-  'Residencial':   FaHome,
-  'Residential':   FaHome,
-  'General':       FaRegBuilding,
-};
-
-const translations = {
+const content = {
   es: {
-    title: 'Servicios de Limpieza Profesional',
-    subtitle: 'Ofrecemos soluciones personalizadas para cada necesidad',
-    categories: {
-      'Especializada': 'Limpieza Especializada',
-      'Specialized':   'Limpieza Especializada',
-      'Comercial':     'Limpieza Comercial',
-      'Commercial':    'Limpieza Comercial',
-      'Residencial':   'Limpieza Residencial',
-      'Residential':   'Limpieza Residencial',
-      'General':       'Servicios Generales',
-    },
-    button: 'Ver Servicios',
-    close: 'Cerrar',
-    servicesIn: 'Servicios en',
+    title: "Nuestros Servicios",
+    subtitle: "Soluciones de limpieza diseñadas para cada espacio y ritmo de vida.",
+    requestBtn: "Solicitar",
+    categories: [
+      {
+        id: "residencial",
+        label: "Residencial",
+        tagline: "Cuidado meticuloso para su hogar, adaptado a sus ritmos de vida.",
+        services: [
+          { num: "01", title: "Casas Particulares",      desc: "Mantenimiento integral profundo de cada ambiente." },
+          { num: "02", title: "Departamentos",           desc: "Optimización y limpieza de espacios urbanos." },
+          { num: "03", title: "Casas en Construcción",   desc: "Limpieza técnica post-obra y entrega final." },
+        ],
+      },
+      {
+        id: "comercial",
+        label: "Comercial",
+        tagline: "Protocolos de higiene para negocios que priorizan la salud de sus clientes.",
+        services: [
+          { num: "04", title: "Gimnasios y Centros Fitness", desc: "Desinfección de superficies y equipos de alto tráfico." },
+          { num: "05", title: "Tiendas y Retail",            desc: "Presentación impecable que cuida la imagen de marca." },
+          { num: "06", title: "Restaurantes",                desc: "Higiene de grado alimentario y áreas comunes." },
+        ],
+      },
+      {
+        id: "especializada",
+        label: "Especializada",
+        tagline: "Técnicas avanzadas para situaciones que exigen precisión y expertise.",
+        services: [
+          { num: "07", title: "Limpieza de Ventanas",   desc: "Limpieza profesional interior y exterior con equipo especializado." },
+          { num: "08", title: "Limpieza Industrial",    desc: "Servicios para plantas y espacios de gran escala." },
+          { num: "09", title: "Limpieza Profunda",      desc: "Tratamiento exhaustivo de zonas de difícil acceso." },
+        ],
+      },
+    ],
   },
   en: {
-    title: 'Professional Cleaning Services',
-    subtitle: 'We offer personalized solutions for every need',
-    categories: {
-      'Especializada': 'Specialized Cleaning',
-      'Specialized':   'Specialized Cleaning',
-      'Comercial':     'Commercial Cleaning',
-      'Commercial':    'Commercial Cleaning',
-      'Residencial':   'Residential Cleaning',
-      'Residential':   'Residential Cleaning',
-      'General':       'General Services',
-    },
-    button: 'View Services',
-    close: 'Close',
-    servicesIn: 'Services in',
+    title: "Our Services",
+    subtitle: "Cleaning solutions designed for every space and lifestyle.",
+    requestBtn: "Request",
+    categories: [
+      {
+        id: "residential",
+        label: "Residential",
+        tagline: "Meticulous care for your home, adapted to your daily rhythms.",
+        services: [
+          { num: "01", title: "Private Homes",         desc: "Comprehensive deep maintenance of every room." },
+          { num: "02", title: "Apartments",            desc: "Optimization and cleaning of urban living spaces." },
+          { num: "03", title: "Post-Construction",     desc: "Technical post-build cleaning and final handover." },
+        ],
+      },
+      {
+        id: "commercial",
+        label: "Commercial",
+        tagline: "Hygiene protocols for businesses that prioritize their clients' health.",
+        services: [
+          { num: "04", title: "Gyms & Fitness Centers", desc: "Disinfection of high-traffic surfaces and equipment." },
+          { num: "05", title: "Retail & Stores",        desc: "Impeccable presentation that protects brand image." },
+          { num: "06", title: "Restaurants",            desc: "Food-grade hygiene standards and common areas." },
+        ],
+      },
+      {
+        id: "specialized",
+        label: "Specialized",
+        tagline: "Advanced techniques for situations that demand precision and expertise.",
+        services: [
+          { num: "07", title: "Window Cleaning",     desc: "Professional interior and exterior cleaning with specialized equipment." },
+          { num: "08", title: "Industrial Cleaning", desc: "Services for plants and large-scale facilities." },
+          { num: "09", title: "Deep Cleaning",       desc: "Exhaustive treatment of hard-to-reach areas." },
+        ],
+      },
+    ],
   },
 };
 
 const Servicios = () => {
   const language = useStore(languageStore);
-  const servicios = language === "en" ? serviciosEnglish : serviciosEspañol;
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [closing, setClosing] = useState(false);
+  const lang = language === "en" ? "en" : "es";
+  const t = content[lang];
 
-  const t = translations[language] || translations.es;
-  const categorias = [...new Set(servicios.map(s => s.categoria))];
+  const [active, setActive] = useState(null);
 
-  const handleOpen = (categoria) => { setClosing(false); setActiveCategory(categoria); };
-  const handleClose = () => {
-    setClosing(true);
-    setTimeout(() => { setActiveCategory(null); setClosing(false); }, 350);
-  };
-
-  const activeServices = servicios.filter(s => s.categoria === activeCategory);
+  const toggle = (id) => setActive(prev => (prev === id ? null : id));
 
   return (
-    <section className="servicios-section" id="services">
-      <div className="servicios-header">
-        <h2>{t.title}</h2>
-        <p className="servicios-subtitle">{t.subtitle}</p>
+    <section className="sv-section" id="services">
+      <div className="sv-intro">
+        <p className="sv-eyebrow">
+          {lang === "es" ? "Lo que hacemos" : "What we do"}
+        </p>
+        <h2 className="sv-title">{t.title}</h2>
+        <p className="sv-subtitle">{t.subtitle}</p>
       </div>
 
-      <div className="categorias-wrapper">
-        {categorias.map((categoria, catIdx) => {
-          const count = servicios.filter(s => s.categoria === categoria).length;
-          return (
-            <div
-              key={catIdx}
-              className={`categoria-card ${activeCategory === categoria ? 'active' : ''}`}
-              style={{ animationDelay: `${catIdx * 0.12}s` }}
+      <div className="sv-categories">
+        {t.categories.map((cat) => (
+          <div key={cat.id} className={`sv-cat ${active === cat.id ? "sv-cat--open" : ""}`}>
+            {/* Category header row */}
+            <button
+              className="sv-cat-header"
+              onClick={() => toggle(cat.id)}
+              aria-expanded={active === cat.id}
             >
-              <div className="categoria-card-icon">
-                <Icon icon={categoryIcons[categoria]} />
-              </div>
-              <h3 className="categoria-card-titulo">
-                {t.categories[categoria] || categoria}
-              </h3>
-              <p className="categoria-card-count">
-                {count} {language === "en" ? "services" : "servicios"}
-              </p>
-              <button className="categoria-btn" onClick={() => handleOpen(categoria)}>
-                {t.button}
-                <span className="btn-arrow">→</span>
-              </button>
-            </div>
-          );
-        })}
-      </div>
+              <span className="sv-cat-label">{cat.label}</span>
+              <span className="sv-cat-tagline">{cat.tagline}</span>
+              <span className="sv-cat-arrow" aria-hidden="true">
+                {active === cat.id ? "−" : "+"}
+              </span>
+            </button>
 
-      {activeCategory && (
-        <div className={`servicios-overlay ${closing ? 'closing' : 'opening'}`} onClick={handleClose}>
-          <div
-            className={`servicios-panel ${closing ? 'panel-closing' : 'panel-opening'}`}
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="panel-header">
-              <div className="panel-header-icon">
-                <Icon icon={categoryIcons[activeCategory]} />
-              </div>
-              <div>
-                <span className="panel-label">{t.servicesIn}</span>
-                <h3 className="panel-title">{t.categories[activeCategory] || activeCategory}</h3>
-              </div>
-              <button className="panel-close" onClick={handleClose}>
-                <FaTimes />
-              </button>
+            {/* Services list */}
+            <div className="sv-services-wrap">
+              <ul className="sv-services-list">
+                {cat.services.map((s) => (
+                  <li key={s.num} className="sv-item">
+                    <span className="sv-item-num">{s.num}</span>
+                    <div className="sv-item-body">
+                      <strong className="sv-item-title">{s.title}</strong>
+                      <span className="sv-item-desc">{s.desc}</span>
+                    </div>
+                    <a href="#contact" className="sv-item-btn">
+                      {t.requestBtn} <span aria-hidden="true">→</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <div className="panel-services-list">
-              {activeServices.map((servicio, idx) => (
-                <div
-                  key={idx}
-                  className={`panel-service-item ${servicio.destacado ? 'destacado' : ''}`}
-                  style={{ animationDelay: `${0.08 + idx * 0.1}s` }}
-                >
-                  <div className="panel-service-icon">
-                    <Icon icon={servicio.icono} />
-                  </div>
-                  <div className="panel-service-info">
-                    <h4>{servicio.titulo}</h4>
-                    <p>{servicio.descripcion}</p>
-                  </div>
-                  {servicio.destacado && (
-                    <span className="badge">{language === "en" ? "Featured" : "Destacado"}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <a href="#contact" className="panel-cta" onClick={handleClose}>
-              {language === "en" ? "Request this service" : "Solicitar este servicio"}
-            </a>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </section>
   );
 };

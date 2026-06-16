@@ -5,7 +5,6 @@ import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
 
 // ✅ Rutas corregidas
-import img1  from "../../assets/Galeria/img1.jpeg";
 import img2  from "../../assets/Galeria/img2.jpeg";
 import img3  from "../../assets/Galeria/img3.jpeg";
 import img4  from "../../assets/Galeria/img4.jpeg";
@@ -16,17 +15,26 @@ import img14 from "../../assets/Galeria/img14.jpeg";
 import img17 from "../../assets/Galeria/img17.jpeg";
 import img9  from "../../assets/Galeria/img9.jpeg";
 import img10 from "../../assets/Galeria/img10.jpeg";
+import img18 from "../../assets/Galeria/img18.jpeg";
+import img19 from "../../assets/Galeria/img19.jpeg";
+import img21 from "../../assets/Galeria/img20.jpeg";
+import img22 from "../../assets/Galeria/img21.jpeg";
+import img20 from "../../assets/Galeria/img22.jpeg";
 
 const photos = [
-  { src: img1.src,  category: { es: "Residencial", en: "Residential" } },
   { src: img2.src,  category: { es: "Residencial", en: "Residential" } },
-  { src: img3.src,  category: { es: "Oficinas",    en: "Offices"     } },
-  { src: img4.src,  category: { es: "Residencial", en: "Residential" } }, // ← quitado el espacio extra
+  // { src: img3.src,  category: { es: "Oficinas",    en: "Offices"     } },
+  { src: img4.src,  category: { es: "Residencial", en: "Residential" } }, 
   { src: img5.src,  category: { es: "Residencial", en: "Residential" } },
   { src: img15.src, category: { es: "Residencial", en: "Residential" } },
   { src: img7.src,  category: { es: "Comercial",   en: "Commercial"  } },
   { src: img14.src, category: { es: "Oficinas",    en: "Offices"     } },
-  { src: img17.src, category: { es: "Industrial",  en: "Industrial"  } },
+  { src: img17.src, category: { es:  "Residencial", en: "Residential"  } },
+  { src: img18.src, category: { es:  "Comercial",  en: "Commercial" } },
+  { src: img19.src, category: { es:  "Comercial",  en: "Commercial" } },
+  { src: img21.src, category: { es:  "Comercial",  en: "Commercial"  } },
+  { src: img22.src, category: { es:  "Comercial", en: "Commercial"  } },
+  { src: img20.src, category: { es:  "Comercial",  en: "Commercial"  } },
   { src: img9.src,  category: { es: "Industrial",  en: "Industrial"  }, beforeAfter: "before" },
   { src: img10.src, category: { es: "Industrial",  en: "Industrial"  }, beforeAfter: "after"  },
 ];

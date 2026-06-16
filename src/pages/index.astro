@@ -9,16 +9,32 @@ import Contacto from "../components/Contacto/Contacto.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import FloatingContact from "../components/FloatingContact/FloatingContact.jsx";
 import LanguageModal from "../components/LanguageModal/LanguageModal";
+// @ts-ignore
+import WhyUs from "../components/WhyUS/WhyUS.jsx";
 ---
 
 <Layout>
   <LanguageModal client:load />
   <Navbar client:load />
+
+  <!-- 1. Captura atención -->
   <Hero client:load />
+
+  <!-- 2. Muestra qué ofreces -->
   <Servicios client:visible />
-  <AboutUs client:visible />
+
+  <!-- 3. Muestra trabajos reales -->
   <Gallery client:visible />
+
+  <!-- 4. Resuelve objeciones -->
+  <WhyUs client:visible />
+
+  <!-- 5. Genera confianza -->
+  <AboutUs client:visible />
+
+  <!-- 6. Convierte -->
   <Contacto client:visible />
+
   <Footer client:visible />
   <FloatingContact client:load />
 </Layout>
