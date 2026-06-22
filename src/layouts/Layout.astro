@@ -2,12 +2,11 @@
 import SEO from "../components/SEO.astro";
 
 interface Props {
-  title?:string;
+  title?: string;
   description?: string;
   lang?: string;
-  
 }
-const { lang = "es" } = Astro.props;
+const { lang = "en" } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,16 +18,11 @@ const { lang = "es" } = Astro.props;
     <meta name="author" content="Diaz Cleaning LLC" />
     <meta name="geo.region" content="US-AZ" />
     <meta name="geo.placename" content="Phoenix, Arizona" />
-  <SEO
-    title="Diaz Cleaning LLC | House & Commercial Cleaning Phoenix AZ"
-    description="Professional house, commercial and window cleaning in Phoenix, Glendale & surrounding areas. Trusted, reliable & affordable. Call (480) 479-4507."
-  />
-  </head>
     <SEO
-      title="Diaz Cleaning LLC – Limpieza Profesional en Phoenix, AZ"
-      description="Servicios profesionales de limpieza residencial, comercial e industrial en Phoenix, Arizona. Llámanos al (480) 479-4507."
+      title="Diaz Cleaning LLC | House & Commercial Cleaning Phoenix AZ"
+      description="Professional house, commercial & window cleaning in Phoenix, Glendale & surrounding areas. Trusted, reliable & affordable. Call (480) 479-4507."
     />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body>
