@@ -3,12 +3,10 @@ interface Props {
   title?: string;
   description?: string;
 }
-
 const { 
   title = "Diaz Cleaning LLC | House & Commercial Cleaning Phoenix AZ",
   description = "Professional house, commercial & window cleaning in Phoenix, Glendale & surrounding areas. Trusted, reliable & affordable. Call (480) 479-4507."
 } = Astro.props;
-
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -16,7 +14,7 @@ const schema = JSON.stringify({
   "description": "Professional house, commercial and window cleaning services in Phoenix, Glendale, Scottsdale and surrounding areas of Arizona.",
   "telephone": "+14804794507",
   "email": "diazcleaning.az@gmail.com",
-  "url": "https://diazcleaning-az.com",
+  "url": "https://www.diazcleaning-az.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "9838 N 44th Drive",
@@ -52,23 +50,20 @@ const schema = JSON.stringify({
   }
 });
 ---
-
 <title>{title}</title>
+<link rel="canonical" href="https://www.diazcleaning-az.com" />
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
-
 <!-- Hreflang -->
-<link rel="alternate" hreflang="en" href="https://diazcleaning-az.com" />
-<link rel="alternate" hreflang="es" href="https://diazcleaning-az.com" />
-<link rel="alternate" hreflang="x-default" href="https://diazcleaning-az.com" />
-
+<link rel="alternate" hreflang="en" href="https://www.diazcleaning-az.com" />
+<link rel="alternate" hreflang="es" href="https://www.diazcleaning-az.com" />
+<link rel="alternate" hreflang="x-default" href="https://www.diazcleaning-az.com" />
 <!-- Open Graph -->
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://diazcleaning-az.com" />
+<meta property="og:url" content="https://www.diazcleaning-az.com" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="es_MX" />
-
 <!-- Schema JSON-LD -->
 <script type="application/ld+json" set:html={schema} />
