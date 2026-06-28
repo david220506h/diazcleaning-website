@@ -48,7 +48,7 @@ const Navbar = () => {
     <nav className={scrollNav ? "navbar active" : "navbar"}>
       <div className="navbar-container">
         <div className="Company">
-          <img src={logo.src} alt="Diaz Cleaning Logo" className="logo" />
+          <img src={logo.src} alt="Diaz Cleaning LLC" className="logo" />
         </div>
         <div className="menu-icon" onClick={handleClick}>
           {click ? <FaTimes /> : <FaBars />}
