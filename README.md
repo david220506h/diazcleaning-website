@@ -1,46 +1,44 @@
-# Astro Starter Kit: Basics
+# Diaz Cleaning — Sitio web
 
-```sh
-npm create astro@latest -- --template basics
+Sitio web de **Diaz Cleaning LLC**, empresa de servicios de limpieza residencial y comercial en Phoenix y Glendale, Arizona, Estados Unidos.
+
+**Sitio en vivo:** [diazcleaning-az.com](https://diazcleaning-az.com)
+
+![Captura del sitio](public/Screenshot.png)
+
+## Sobre el proyecto
+
+Proyecto desarrollado por encargo para un cliente real. El objetivo era dar presencia en línea a un negocio nuevo, mostrar sus servicios con fotos de trabajos realizados y facilitar que los clientes soliciten una cotización.
+
+## Funcionalidades
+
+- **Bilingüe (español / inglés)** con selector de idioma en el encabezado.
+- **Catálogo de servicios** organizado en limpieza residencial, comercial y especializada.
+- **Galería de trabajos filtrable** por categoría (residencial, comercial, oficinas, industrial), con fotos de antes y después.
+- **Formulario de contacto** para solicitar cotizaciones.
+- Accesos rápidos de contacto: llamada, WhatsApp, correo, SMS y redes sociales.
+- **Mapa integrado** con la ubicación del negocio y horarios de atención.
+- Sección de preguntas frecuentes.
+- Diseño adaptable a celular, tableta y escritorio.
+
+## Tecnologías
+
+- [Astro](https://astro.build)
+- React
+- TypeScript
+- HTML y CSS
+
+## Ejecutar en local
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El sitio queda disponible en `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Autor
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Ángel David Díaz Villanueva**
+Desarrollador Web y Móvil
+[GitHub](https://github.com/david220506h) · diazdavid2435@gmail.com
